@@ -45,7 +45,7 @@ function SearchPageClient() {
                 {isLoading ? <SkeletonSearch/>
                 :  resultUsers.length>0 ?
                     resultUsers.map((user)=>(
-                        <Link key={user.username} className="flex p-2 items-center gap-1 hover:bg-accent hover:text-accent-foreground  rounded-lg w-full" href={`/profile/`}>
+                        <Link key={user.username} className="flex p-2 items-center gap-1 hover:bg-accent hover:text-accent-foreground  rounded-lg w-full" href={`/profile/${user.username}`}>
                         <Avatar >
                             <AvatarImage src={ user.image||"./avatar.png"}/>
                         </Avatar>
