@@ -61,8 +61,7 @@ function PostCard({post, user}: {post : Post; user :UserType}) {
         try {
             setIsDeleting(true);
             const result = await deletePost(post.id,  (!!user? user.id : undefined));
-            if(result.success) console.log('Delete post successfully')
-            else throw new Error(result.message)
+            if(!result.success) throw new Error(result.message)
         } catch (error : any) {
             console.log(error.message)
         } finally{
@@ -89,7 +88,7 @@ function PostCard({post, user}: {post : Post; user :UserType}) {
                                             {post.author.name}
                                         </Link>
                                         <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                                            <Link href={`/profile${post.author.username}`}>
+                                            <Link href={`/profile/${post.author.username}`}>
                                                 @{post.author.username}
                                             </Link>
                                             <span>▪</span>

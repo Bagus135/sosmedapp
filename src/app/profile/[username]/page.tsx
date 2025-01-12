@@ -3,10 +3,13 @@ import { notFound } from "next/navigation";
 import ProfilePageClient from "./profilePage";
 import { getProfile } from "@/actions/user.action";
 
+type Props = {
+  params: Promise<{ username: string }>
+}
 
-export async function generateMetadata({params}: {params : {username : string}}){
-  await params
-  const user = await getProfileByUsername(params.username)
+export async function generateMetadata({params}: Props){
+  const username = (await params).username
+  const user = await getProfileByUsername(username)
   if(!user) return;
 
   return {
@@ -15,10 +18,10 @@ export async function generateMetadata({params}: {params : {username : string}})
   }
 }
 
-async function ProfilePage({params}: {params : {username : string}}) {
-  await params
+async function ProfilePage({params}: Props) {
+  const username = (await params).username
   
-  const [user, currentUser]= await Promise.all([getProfileByUsername(params.username), getProfile()]);
+  const [user, currentUser]= await Promise.all([getProfileByUsername(username), getProfile()]);
   if(!user) return notFound();
 
   const [posts, likedPosts, isCurrentUserFollowing] = await Promise.all([

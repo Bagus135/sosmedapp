@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs"
 import { AvatarImage } from "@radix-ui/react-avatar"
 import { TabsTrigger } from "@radix-ui/react-tabs"
 import { format } from "date-fns"
-import { CalendarIcon, EditIcon, FileTextIcon, HeartIcon, LinkIcon, MapPinIcon, PencilIcon } from "lucide-react"
+import { CalendarIcon, EditIcon, FileTextIcon, HeartIcon, LinkIcon, Loader2Icon, MapPinIcon, PencilIcon } from "lucide-react"
 import { useRef, useState } from "react"
 import ProfileImageDialog from "./cropIMG"
 
@@ -34,6 +34,7 @@ function ProfilePageClient({isFollowing : initialIsFollowing, likedPosts, posts,
     const [showEditDialog, setShowEditDialog] = useState(false);
     const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
     const [isUpdatingFollow, setIsUpdatingFollow] = useState(false);
+    const [isUpdateBio, setIsUpdateBio] = useState(false);
     const editPicRef = useRef<HTMLButtonElement |null>(null) 
 
     const [editForm , setEditForm] = useState({
@@ -48,6 +49,8 @@ function ProfilePageClient({isFollowing : initialIsFollowing, likedPosts, posts,
     }
 
     const handleEditSubmit = async () =>{
+        try{
+            setIsUpdateBio(true)
         const formData = new FormData();
         Object.entries(editForm).forEach(([key,value])=>{
             formData.append(key,value)
@@ -55,6 +58,10 @@ function ProfilePageClient({isFollowing : initialIsFollowing, likedPosts, posts,
 
         const result = await updateProfile(formData);
         if(result.success) setShowEditDialog(false)
+        
+        } finally{
+            setIsUpdateBio(false)
+        }
     }
 
     const handleFollow = async () =>{
@@ -234,7 +241,13 @@ function ProfilePageClient({isFollowing : initialIsFollowing, likedPosts, posts,
                         <DialogClose asChild>
                             <Button variant={"outline"}>Cancel</Button>
                         </DialogClose>
-                        <Button onClick={handleEditSubmit}>Submit</Button>
+                        <Button disabled={isUpdateBio} onClick={handleEditSubmit}>
+                            { isUpdateBio?
+                                <Loader2Icon className="size-4 animate-spin"/>
+                                :
+                                `Submit`
+                                }
+                        </Button>
                     </div>
                 </DialogContent>
             </Dialog>

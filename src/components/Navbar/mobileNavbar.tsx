@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "../ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
-import { BellIcon, HomeIcon, LogIn, LogOutIcon, MenuIcon, Search, UserIcon } from "lucide-react"
+import { BellIcon, Github, HomeIcon, LogIn, LogOutIcon, MenuIcon, Search, UserIcon } from "lucide-react"
 import Link from "next/link"
 import ThemeToogle from "../themeToogle"
 import { logOutAction } from "@/actions/auth.action"
@@ -15,6 +15,11 @@ function MobileNavbar({authUser}: {authUser : NavbarUserType}) {
     return (
         <div className="flex md:hidden items-center space-x-2">
         <ThemeToogle/>
+        <Button variant={"ghost"} className="flex items-center gap-2" size={"icon"} asChild>
+            <Link href={'https://github.com/Bagus135/sosmedapp'} >
+                <Github className="w-4 h-4"/>
+            </Link>
+        </Button>
         <Sheet open={showMenu} onOpenChange={setShowMenu}>
             <SheetTrigger asChild>
                 <Button variant={'ghost'} size={'icon'}>

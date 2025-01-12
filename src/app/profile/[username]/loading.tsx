@@ -12,9 +12,10 @@ export default function Loading(){
       <CardContent className="pt-6">
           <div className="flex flex-col items-center text-center">
               <Skeleton className="w-24 h-24 rounded-full relative z-[0] mb-4"/>
-              <Skeleton className="h-4 w-full"/>
-              <Skeleton className="h-4 w-full"/>
-              <Skeleton className="h-4 w-full"/>
+              <div className="flex flex-col justify-center gap-2">
+                <Skeleton className="h-4 w-10"/>
+                <Skeleton className="h-4 w-10"/>
+              </div>
                
               <div className="w-full mt-6">
                   <div className="flex justify-between mb-4">

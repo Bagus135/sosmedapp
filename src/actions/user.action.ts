@@ -4,9 +4,9 @@ import { revalidatePath } from "next/cache";
 import { getTokenId } from "./auth.action";
 
 export async function getProfile() {
-    const {id} = await getTokenId()
-    if(!id) throw new Error('Unauthorized')
     try {
+        const {id} = await getTokenId()
+        if(!id) throw new Error('Unauthorized')
         const user = await prisma.user.findUnique({
             where:{
                 id

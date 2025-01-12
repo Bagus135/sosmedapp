@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "../ui/button"
-import { BellIcon, HomeIcon, LogOutIcon, Search, UserIcon } from "lucide-react"
+import { BellIcon, Github, HomeIcon, LogOutIcon, Search, UserIcon } from "lucide-react"
 import ThemeToogle from "../themeToogle"
 import { logOutAction } from "@/actions/auth.action"
 import { NavbarUserType } from "./Navbar"
@@ -21,6 +21,11 @@ function DekstopNavbar({authUser}: {authUser : NavbarUserType}) {
                 <span className="lg:inline hidden">
                     Home
                 </span>
+            </Link>
+        </Button>
+        <Button variant={"ghost"} className="flex items-center gap-2"  size={"icon"} asChild>
+            <Link href={'https://github.com/Bagus135/sosmedapp'} >
+                <Github className="w-4 h-4"/>
             </Link>
         </Button>
         <Button variant={"ghost"} className="flex items-center gap-2" asChild>

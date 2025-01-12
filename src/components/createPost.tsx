@@ -54,7 +54,6 @@ function CreatePost({user}: {user : UserType}) {
                 setContent('')
                 setBase64String(null)
             }
-            console.log(result.success)
         } catch (error) {
             console.log(error)
         } finally{
