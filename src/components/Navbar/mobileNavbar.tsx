@@ -55,7 +55,7 @@ function MobileNavbar({authUser}: {authUser : NavbarUserType}) {
                                 </Link>
                             </Button>
                             <Button variant={'ghost'} className="flex items-center gap-3 justify-start" asChild>
-                                <Link href={`/profile${authUser.username}`}>
+                                <Link href={`/profile/${authUser.username}`}>
                                 <UserIcon className="h-4 w-4"/>
                                 Profile
                                 </Link>
