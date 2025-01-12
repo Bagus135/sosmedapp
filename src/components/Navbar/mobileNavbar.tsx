@@ -61,19 +61,19 @@ function MobileNavbar({authUser}: {authUser : NavbarUserType}) {
                                 </Link>
                             </Button>
                            
-                            <div className="flex gap-2 items-center justify-between bottom-2 absolute">
+                            <div className="flex gap-2 items-center justify-between bottom-2 absolute max-w-[150px] right-10">
                             <div className="flex items-center gap-1">
                                     <Avatar>
                                         <AvatarImage src={authUser.image || "./avatar.png"}/>
                                     </Avatar>
-                                    <div className="text-xs">
+                                    <div className="text-xs max-w-[110px] ">
                                         <Link  href={`/profile/${authUser.username}`}>
                                             {authUser.name || ''}
                                         </Link>
-                                        <p className="text-muted-foreground">@{authUser.username||``}</p>
+                                        <p className="text-muted-foreground line-clamp-1">@{authUser.username||``}</p>
                                     </div>
                                 </div>
-                                    <Button variant={'ghost'} className="flex items-center gap-3 justify-center"  onClick={()=>logOutAction()} >
+                                    <Button variant={'ghost'} className="flex items-center gap-3 justify-center line-clamp-1"  onClick={()=>logOutAction()} >
                                         <LogOutIcon className="h-4 w-4"/>
                                     </Button>
                             </div>

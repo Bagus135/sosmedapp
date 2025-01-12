@@ -5,7 +5,7 @@ import { Card, CardContent } from "./ui/card";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import { ImageIcon, Loader2Icon, SendIcon } from "lucide-react";
+import { ImageIcon, Loader2Icon, SendIcon, X } from "lucide-react";
 import { createPost } from "@/actions/post.action";
 
 export interface UserType {
@@ -90,6 +90,23 @@ function CreatePost({user}: {user : UserType}) {
                      >
                      <ImageIcon className="size-4 mr-2"/>
                      Photo
+                     </Button>
+                     <input
+                        type="file"
+                        accept="image/*"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        className="hidden"
+                    />
+                    <Button
+                     type="button"
+                     variant={'ghost'}
+                     size={'sm'}
+                     className={!base64String? "hidden":" text-muted-foreground hover:text-primary"}
+                     onClick={()=> setBase64String(null)}
+                     >
+                     <X className="size-4 mr-2"/>
+                     Cancel
                      </Button>
                      <input
                         type="file"
